@@ -57,7 +57,7 @@ listBox.addEventListener("click",function(e){
 },false);
 
 
-// Api call to push data into the array
+// Api call And push response data into the array
 fetch('https://jsonplaceholder.typicode.com/todos').then((response)=>{
     if(!response.ok){
         throw new Error("Request failed");
