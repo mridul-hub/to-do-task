@@ -14,7 +14,7 @@ function addTask(){
     }
     // push task detail to array
     else{
-        data.push({details:inputBox.value,id:id});
+        data.unshift({details:inputBox.value,id:id});
         id++;
         inputBox.value = "";
         render();
@@ -31,10 +31,12 @@ function render(){
     for(var i=0;i<data.length;i++)
     {
         let li = document.createElement("li");
-        li.innerHTML = "Details: " + data[i].details + "  " + "Id: "+data[i].id;
+        li.innerHTML = data[i].details;
         li.className = data[i].id;
+        let but = document.createElement("image");
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
+        li.appendChild(but);
         li.appendChild(span);
         listBox.appendChild(li);
     };
@@ -56,6 +58,37 @@ listBox.addEventListener("click",function(e){
     }
 },false);
 
+// Add listner to edit button
+listBox.addEventListener("click",function(e){
+    if(e.target.tagName==="IMAGE"){
+        let inpu = e.target.parentElement.textContent;
+        inpu = inpu.substr(0,inpu.length-1);
+        console.log(inpu);
+        var row = document.getElementById("rowtwo");
+        row.style.visibility = 'visible';
+        var edit = document.getElementById("input");
+        edit.value = inpu;
+        edit.className = e.target.parentElement.className;
+    }
+})
+
+// Saving changes done to task detail
+function save(){
+    var edit = document.getElementById("input");
+    var ids = edit.className;
+    var deta = edit.value;
+    console.log(deta);
+    for(var i=0;i<data.length;i++)
+       {
+           if(data[i].id==ids)
+           {
+               data[i].details = deta;
+           }
+       }
+    var row = document.getElementById("rowtwo");
+    row.style.visibility = 'hidden';   
+    render();
+}
 
 // Api call And push response data into the array
 fetch('https://jsonplaceholder.typicode.com/todos').then((response)=>{

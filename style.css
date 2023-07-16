@@ -10,7 +10,7 @@ html {
 }
 .to-do {
   width: 100%;
-  max-width: 540px;
+  max-width: 600px;
   background: #fff;
   margin: 100px auto 20px;
   padding: 40px 30px 70px;
@@ -50,30 +50,12 @@ button {
 ul li {
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 12px 8px 12px 10px;
   user-select: none;
   cursor: pointer;
   position: relative;
 }
-ul li::before {
-  content: "";
-  position: absolute;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background-image: url(images/unchecked.png);
-  background-size: cover;
-  background-position: center;
-  top: 12px;
-  left: 8px;
-}
-ul li.checked {
-  color: #555;
-  text-decoration: line-through;
-}
-ul li.checked::before {
-  background-image: url(images/checked.png);
-}
+
 ul li span {
   position: absolute;
   right: 0;
@@ -88,4 +70,32 @@ ul li span {
 }
 ul li span:hover {
   background: #edeef0;
+}
+ul li image {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(images/edit.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 535px;
+}
+.edit {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+}
+.row-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fbdc00;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
 }
